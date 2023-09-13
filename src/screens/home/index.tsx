@@ -1,4 +1,4 @@
-import { SafeAreaView, Text, TextInput, View } from "react-native"
+import { Text, TextInput, View } from "react-native"
 import { style } from "./style"
 import { useState, useEffect } from "react"
 import { Buttons } from "../../components/buttons"
@@ -75,6 +75,17 @@ export const Home = () => {
         handleSortNumber(false)
     }
 
+    const NewGame = () =>{
+        setCorrets(0)
+        setwrongs(0)
+        setPoints(0)
+        setNumberOne(0)
+        setNumberTwo(0)
+        setResult(0)
+        setOperator('')
+        Sort
+    }
+
     useEffect(() => {
         Sort()
     }, [])
@@ -113,14 +124,14 @@ export const Home = () => {
                     <Text style={style.questionTittle}>Informe sua resposta</Text>
                 </View>       
                 <View style={style.boxInput}>
-                    <TextInput style={style.input} keyboardType='number-pad'>{result}</TextInput>
+                    <TextInput style={style.input} keyboardType='number-pad' onChangeText={() => setResult(result)}>{result}</TextInput>
                 </View>
                 <View style={style.boxButtonValidate}>
                     <Buttons style={style.buttonValidate} textStyle={style.textButtonValidate} texts={'Validar'} onChangeNumber={Validate}/>
                 </View>
             </View>
             <View style={style.boxButtonNewGame}>
-                <Buttons style={style.buttonNewGame} textStyle={style.textButtonNewGame} texts={'Novo Jogo'} onChangeNumber={Sort}/>
+                <Buttons style={style.buttonNewGame} textStyle={style.textButtonNewGame} texts={'Novo Jogo'} onChangeNumber={NewGame}/>
             </View>
         </View>
     )
